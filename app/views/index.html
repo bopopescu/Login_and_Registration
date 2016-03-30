@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MVC Login Validation</title>
+</head>
+<body>
+	<div id='wrapper'>
+		<div id='reg' class='form'>	
+			<h1>Registration</h1>
+			<form action='/registration' method='post'>
+			{% with messages = get_flashed_messages(category_filter=['regis_errors']) %}
+				{% if messages %}	
+					{% for message in messages %}
+							<p>{{message}}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<p>First Name: <input type='text' name='first_name'/></p>
+				<p>Last Name: <input type='text' name='last_name'/></p>
+				<p>Email: <input type='text' name='email'/></p>
+				<p>Password:<input type='hidden'/><input type='password' name='reg_password'/></p>
+				<p>Confirm Password: <input type='hidden'/><input type='password' name='confirm'/></p>
+				<input type=submit value='Register'name='reg_submit'>
+			</form>
+		</div><!--end of reg-->
+
+		<div id='login' class='form'>
+		<h1>Login</h1>
+			<form action='/login' method='post'>
+				<p>email: <input type='text' name='log_email'/></p>
+				<p>Password: <input type='hidden'/><input type='password' name='password'/></p>
+				<input type=submit value='Login' name='login_submit'>
+			</form>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}	
+					{% for message in messages %}
+						<p>{{message}}</p>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+
+		</div><!--end of login-->
+
+	</div><!--end of wrapper-->
+</body>
+</html>
